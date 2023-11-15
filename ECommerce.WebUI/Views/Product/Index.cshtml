@@ -1,0 +1,41 @@
+﻿@model ProductListViewModel
+
+<form method="get" action="@Url.Action("Sort", "Product")">
+    <input type="hidden" name="content" value="@ViewBag.SortByNameButtonText" />
+    <input type="submit" value="@ViewBag.SortByNameButtonText" />
+</form>
+
+<form method="get" action="@Url.Action("SortPrice", "Product")">
+    <input type="hidden" name="content" value="@ViewBag.SortByPriceButtonText" />
+    <input type="submit" value="@ViewBag.SortByPriceButtonText" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> ProductName</th>
+            <th>UnitPrice</th>
+            <th>UnitsInStock</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+            <tr>
+                <td>
+                    @item.ProductName
+                </td>
+                <td>
+                    @item.UnitPrice
+                </td>
+                <td>
+                    @item.UnitsInStock
+                </td>
+                <td>
+                    <a class="btn btn-xs btn-success">Add To Cart</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
