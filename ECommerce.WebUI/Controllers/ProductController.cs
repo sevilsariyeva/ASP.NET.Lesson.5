@@ -1,5 +1,6 @@
 ﻿using ECommerce.Business.Abstract;
 using ECommerce.Entities.Models;
+using ECommerce.WebUI.Consts;
 using ECommerce.WebUI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,7 @@ namespace ECommerce.WebUI.Controllers
         }
         public async Task<ActionResult> Index(int category = 0)
         {
-            ViewBag.SortByNameButtonText = "Sort A-Z";
+            ViewBag.SortByNameButtonText = ProjectConstants.Alphanumeric;
             ViewBag.SortByPriceButtonText = "Lower To Higher";
             var products = await _productService.GetAllByCategory(category);
             var model = new ProductListViewModel
@@ -30,15 +31,15 @@ namespace ECommerce.WebUI.Controllers
         {
             var products = await _productService.GetAll();
 
-            if (content == "Sort A-Z")
+            if (content == ProjectConstants.Alphanumeric)
             {
                 products = products.OrderBy(p => p.ProductName).ToList();
-                content = "Sort Z-A";
+                content = ProjectConstants.NonAlphanumeric;
             }
             else
             {
                 products = products.OrderByDescending(p => p.ProductName).ToList();
-                content = "Sort A-Z";
+                content = ProjectConstants.Alphanumeric;
             }
 
             var model = new ProductListViewModel

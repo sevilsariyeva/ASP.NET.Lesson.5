@@ -1,15 +1,21 @@
 ﻿@model ProductListViewModel
 
-<form method="get" action="@Url.Action("Sort", "Product")">
+@*<form method="get" action="@Url.Action("Sort", "Product")">
     <input type="hidden" name="content" value="@ViewBag.SortByNameButtonText" />
-    <input type="submit" value="@ViewBag.SortByNameButtonText" />
+    <input type="submit"  value="@ViewBag.SortByNameButtonText" />
 </form>
+*@
 
-<form method="get" action="@Url.Action("SortPrice", "Product")">
+<a class="btn-primary btn" href="/Product/Sort?content=@ViewBag.SortByNameButtonText">
+    @ViewBag.SortByNameButtonText
+</a>
+
+
+@*<form method="get" action="@Url.Action("SortPrice", "Product")">
     <input type="hidden" name="content" value="@ViewBag.SortByPriceButtonText" />
     <input type="submit" value="@ViewBag.SortByPriceButtonText" />
 </form>
-
+*@
 <table class="table">
     <thead>
         <tr>
